@@ -10,11 +10,6 @@ def BuildTriangle(row):
     return triangle[1:]
 
 
-t = BuildTriangle(0)
-# for i in t:
-#     print(*i)
-
-
 def CalculatePower(power):
     triangle = BuildTriangle(power+1)
     s = 0
@@ -23,28 +18,56 @@ def CalculatePower(power):
     return s
 
 
-# print(CalculatePower(1))
-
 def CalculateCoefficent(x, y, highCoefficent):
     triangle = BuildTriangle(highCoefficent+1)
-    string = [f"{x}^{highCoefficent}"]
-    counter = highCoefficent-1
-    decounter = 1
-    for i in triangle[highCoefficent]:
-        if i != 1:
-            if counter and decounter != 1:
-                test = f"{i}*{x}^{counter}*{y}^{decounter}"
-            if counter == 1:
-                test = f"{i}*{x}*{y}^{decounter}"
-            if decounter == 1:
-                test = f"{i}*{x}^{counter}*{y}"
-            counter -= 1
-            decounter += 1
-            string.append(test)
-    string.append(f"{y}^{highCoefficent}")
+    if highCoefficent != 1 or highCoefficent != 0:
+        string = [f"{x}^{highCoefficent}"]
+        counter = highCoefficent-1
+        decounter = 1
+        for i in triangle[highCoefficent]:
+            if i != 1:
+                if counter and decounter != 1:
+                    test = f"{i}*{x}^{counter}*{y}^{decounter}"
+                if counter == 1:
+                    test = f"{i}*{x}*{y}^{decounter}"
+                if decounter == 1:
+                    test = f"{i}*{x}^{counter}*{y}"
+                counter -= 1
+                decounter += 1
+                string.append(test)
+        string.append(f"{y}^{highCoefficent}")
+    if highCoefficent == 1:
+        string = [f"{x}"]
+        string.append(f"{y}")
+    if highCoefficent == 0:
+        string = [1, 1]
     return string
 
 
-x = CalculateCoefficent('x', 'y', 6)
+def CalculatePath(k):
+    m = [[1 for i in range(k)] for j in range(k)]
+    for i in range(1, k):
+        for j in range(1, k):
+            m[i][j] = m[i][j-1] + m[i-1][j]
+    return m
 
-print(*x,sep=' + ', end=' ')
+
+inputValue1 = input().split(' ')
+inputValue2 = input().split(' ')
+
+t = BuildTriangle(int(inputValue1[0]))
+for i in t:
+    print(*i)
+
+print('\n')
+
+print(CalculatePower(int(inputValue1[1])))
+
+x = CalculateCoefficent(inputValue2[0], inputValue2[1], int(inputValue2[2]))
+print(*x, sep=' + ', end=' ')
+
+print('\n')
+
+p = CalculatePath(int(inputValue1[2]))
+for i in p:
+    print(*i, sep=',')
