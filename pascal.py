@@ -26,12 +26,14 @@ def CalculateCoefficent(x, y, highCoefficent):
         decounter = 1
         for i in triangle[highCoefficent]:
             if i != 1:
-                if counter and decounter != 1:
+                if counter and decounter > 1:
                     test = f"{i}*{x}^{counter}*{y}^{decounter}"
-                if counter == 1:
+                if counter == 1 or counter == 0:
                     test = f"{i}*{x}*{y}^{decounter}"
-                if decounter == 1:
+                if decounter == 1 or decounter == 0:
                     test = f"{i}*{x}^{counter}*{y}"
+                if counter == 1 or decounter == 1:
+                    test = f"{i}*{x}*{y}"
                 counter -= 1
                 decounter += 1
                 string.append(test)
