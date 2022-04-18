@@ -1,13 +1,13 @@
 def BuildTriangle(row):
     triangle = []
-    for i in range(row+2):
-        l = [1]
+    for i in range(1, row+2):
+        l = []
         C = 1
         for j in range(1, i+1):
-            C = C * (i - j) // j
             l.append(C)
-        triangle.append(l[:len(l)-1])
-    return triangle[1:]
+            C = C * (i - j) // j
+        triangle.append(l)
+    return triangle
 
 
 def CalculatePower(power):
@@ -26,14 +26,12 @@ def CalculateCoefficent(x, y, highCoefficent):
         decounter = 1
         for i in triangle[highCoefficent]:
             if i != 1:
-                if counter and decounter > 1:
+                if counter > 1 and decounter > 1:
                     test = f"{i}*{x}^{counter}*{y}^{decounter}"
-                if counter == 1 or counter == 0:
+                if counter == 1 and decounter > 1:
                     test = f"{i}*{x}*{y}^{decounter}"
-                if decounter == 1 or decounter == 0:
+                if decounter == 1 and counter > 1:
                     test = f"{i}*{x}^{counter}*{y}"
-                if counter == 1 or decounter == 1:
-                    test = f"{i}*{x}*{y}"
                 counter -= 1
                 decounter += 1
                 string.append(test)
@@ -47,7 +45,13 @@ def CalculateCoefficent(x, y, highCoefficent):
 
 
 def CalculatePath(k):
-    m = [[1 for i in range(k)] for j in range(k)]
+    # m = [[1 for i in range(k)] for j in range(k)]
+    m = []
+    for i in range(k):
+        l = []
+        for j in range(k):
+            l.append(1)
+        m.append(l)
     for i in range(1, k):
         for j in range(1, k):
             m[i][j] = m[i][j-1] + m[i-1][j]
