@@ -67,7 +67,7 @@ t = BuildTriangle(int(inputValue1[0]))
 for i in t:
     print(*i)
 
-print('\n')
+print('')
 
 print(CalculatePower(int(inputValue1[1])))
 
@@ -75,6 +75,7 @@ x = CalculateCoefficent(inputValue2[0], inputValue2[1], int(inputValue2[2]))
 print(*x, sep=' + ', end=' ')
 
 print('\n')
+print('')
 
 p = CalculatePath(int(inputValue1[2]))
 for i in p:
