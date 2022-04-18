@@ -32,6 +32,8 @@ def CalculateCoefficent(x, y, highCoefficent):
                     test = f"{i}*{x}*{y}^{decounter}"
                 if decounter == 1 and counter > 1:
                     test = f"{i}*{x}^{counter}*{y}"
+                if decounter == 1 and counter == 1:
+                    test = f"{i}*{x}*{y}"
                 counter -= 1
                 decounter += 1
                 string.append(test)
