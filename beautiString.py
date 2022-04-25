@@ -1,6 +1,3 @@
-from os import dup
-
-
 string = input()
 splitedString = string.split(' ')
 duplicateCopy = splitedString.copy()
@@ -14,8 +11,8 @@ for i in range(len(splitedString)):
 subCopy = duplicateCopy.copy()
 
 for i in range(len(duplicateCopy)):
-    for j in range(i+1, len(duplicateCopy)):
-        if duplicateCopy[i] in subCopy:
+    if duplicateCopy[i] in subCopy:
+        for j in range(i+1, len(duplicateCopy)):
             if duplicateCopy[i].lower() in duplicateCopy[j].lower() or duplicateCopy[j].lower() in duplicateCopy[i].lower():
                 if len(duplicateCopy[i]) > len(duplicateCopy[j]):
                     subCopy.remove(duplicateCopy[j])
