@@ -11,13 +11,12 @@ for i in range(len(splitedString)):
 subCopy = duplicateCopy.copy()
 
 for i in range(len(duplicateCopy)):
-    if duplicateCopy[i] in subCopy:
-        for j in range(i+1, len(duplicateCopy)):
-            if duplicateCopy[i].lower() in duplicateCopy[j].lower() or duplicateCopy[j].lower() in duplicateCopy[i].lower():
-                if len(duplicateCopy[i]) > len(duplicateCopy[j]):
-                    subCopy.remove(duplicateCopy[j])
-                else:
-                    subCopy.remove(duplicateCopy[i])
+    for j in range(i+1, len(duplicateCopy)):
+        if duplicateCopy[i].lower() in duplicateCopy[j].lower() or duplicateCopy[j].lower() in duplicateCopy[i].lower() and duplicateCopy[i] in subCopy:
+            if len(duplicateCopy[i]) > len(duplicateCopy[j]):
+                subCopy.remove(duplicateCopy[j])
+            else:
+                subCopy.remove(duplicateCopy[i])
 
 for i in subCopy:
     print(i, end=' ')
