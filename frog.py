@@ -44,4 +44,4 @@ def find_all_paths(graph, start, end, path=[]):
     return paths
 
 
-print(len(find_all_paths(graph, ((m*m)-1), (n-1))))
+print(len(find_all_paths(graph, (n*(m-1)), (n-1))))
